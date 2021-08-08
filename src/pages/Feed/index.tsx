@@ -1,7 +1,6 @@
-import React from 'react';
-import {useEffect} from 'react';
-import {useState} from 'react';
-import {FlatList, Text} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {useCallback} from 'react';
+import {FlatList} from 'react-native';
 import Card from '../../components/Card';
 import api from '../../services/api';
 
@@ -13,6 +12,9 @@ interface CharacterProps {
   status: string;
   species: string;
   gender: string;
+  origin: {
+    name: string;
+  };
   location: {
     name: string;
   };
@@ -23,17 +25,16 @@ const Feed: React.FC = () => {
   const [feed, setFeed] = useState<CharacterProps[]>([]);
   const [page, setPage] = useState(1);
 
+  const loadFeed = useCallback(async () => {
+    const response = await api.get(`character/?page=${page}`);
+
+    setFeed([...feed, ...response.data.results]);
+    setPage(page + 1);
+  }, [feed, page]);
+
   useEffect(() => {
-    const loadFeed = async (currentPage = page) => {
-      const response = await api.get(`character/?page=${currentPage}`);
-
-      setFeed(response.data.results);
-    };
-
     loadFeed();
-  }, [page]);
-
-  console.log(feed);
+  }, []);
 
   return (
     <S.Container>
@@ -42,6 +43,9 @@ const Feed: React.FC = () => {
           data={feed}
           keyExtractor={item => item.id}
           renderItem={({item: character}) => <Card character={character} />}
+          onEndReachedThreshold={0.1}
+          onEndReached={loadFeed}
+          showsVerticalScrollIndicator={false}
         />
       </S.Content>
     </S.Container>
