@@ -1,5 +1,7 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text} from 'react-native';
+
+import * as S from './styles';
 
 interface CardProps {
   character: {
@@ -8,6 +10,9 @@ interface CardProps {
     status: string;
     species: string;
     gender: string;
+    origin: {
+      name: string;
+    };
     location: {
       name: string;
     };
@@ -16,9 +21,22 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({character}) => (
-  <View>
-    <Text>{character.name}</Text>
-  </View>
+  <S.Container>
+    <S.CharacterImage source={{uri: character.image}} />
+
+    <S.Content>
+      <S.Name>
+        <Text>{character.name}</Text>
+      </S.Name>
+
+      <S.Species>
+        <Text>Species: {character.species}</Text>
+      </S.Species>
+      <S.Origin>
+        <Text>Origin: {character.origin.name}</Text>
+      </S.Origin>
+    </S.Content>
+  </S.Container>
 );
 
 export default Card;
