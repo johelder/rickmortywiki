@@ -1,13 +1,10 @@
 import React, {useEffect, useState, useCallback} from 'react';
-import {FlatList} from 'react-native';
 
 import api from '../../services/api';
-
-import Card from '../../components/Card';
-
 import * as S from './styles';
+import List from '../../components/List';
 
-interface CharacterProps {
+export interface CharacterProps {
   id: string;
   name: string;
   status: string;
@@ -46,14 +43,7 @@ const Feed: React.FC = () => {
   return (
     <S.Container>
       <S.Content>
-        <FlatList
-          data={feed}
-          keyExtractor={item => item.id}
-          renderItem={({item: character}) => <Card character={character} />}
-          onEndReachedThreshold={0.1}
-          onEndReached={loadFeed}
-          showsVerticalScrollIndicator={false}
-        />
+        <List feed={feed} loadFeed={loadFeed} />
       </S.Content>
     </S.Container>
   );

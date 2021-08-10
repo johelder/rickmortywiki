@@ -1,23 +1,12 @@
 import React from 'react';
 import {Text} from 'react-native';
 
+import {CharacterProps} from '../../pages/Feed';
+
 import * as S from './styles';
 
 interface CardProps {
-  character: {
-    id: string;
-    name: string;
-    status: string;
-    species: string;
-    gender: string;
-    origin: {
-      name: string;
-    };
-    location: {
-      name: string;
-    };
-    image: string;
-  };
+  character: CharacterProps;
 }
 
 const Card: React.FC<CardProps> = ({character}) => (
