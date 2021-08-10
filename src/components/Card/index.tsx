@@ -1,5 +1,4 @@
 import React from 'react';
-import {Text} from 'react-native';
 
 import {CharacterProps} from '../../pages/Feed';
 
@@ -14,16 +13,17 @@ const Card: React.FC<CardProps> = ({character}) => (
     <S.CharacterImage source={{uri: character.image}} />
 
     <S.Content>
-      <S.Name>
-        <Text>{character.name}</Text>
-      </S.Name>
+      <S.Name>{character.name}</S.Name>
+      <S.Key>
+        Species: {'\n'}
+        <S.Value>{character.species}</S.Value>
+      </S.Key>
+      <S.Key>
+        Origin: {'\n'}
+        <S.Value>{character.origin.name}</S.Value>
+      </S.Key>
 
-      <S.Species>
-        <Text>Species: {character.species}</Text>
-      </S.Species>
-      <S.Origin>
-        <Text>Origin: {character.origin.name}</Text>
-      </S.Origin>
+      <S.HeartIcon name="heart-outline" size={20} color="#1e2047" />
     </S.Content>
   </S.Container>
 );
