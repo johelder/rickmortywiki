@@ -6,6 +6,26 @@ export const Container = styled.View`
 `;
 
 export const Content = styled.View`
-  width: 90%;
-  margin: 0 auto;
+  margin: 0 15px;
+`;
+
+export const Header = styled.View`
+  width: 100%;
+  height: 125px;
+  background: #1e2047;
+  padding: 0 15px;
+
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+export const Title = styled.Text`
+  font-size: 20px;
+  font-family: 'Poppins-SemiBold';
+  color: #ffffff;
+`;
+export const CharactersCount = styled.Text`
+  font-size: 14px;
+  font-family: 'Poppins-Regular';
+  color: #c1c1c1;
 `;
