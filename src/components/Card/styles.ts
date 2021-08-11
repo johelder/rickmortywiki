@@ -7,12 +7,14 @@ export const Container = styled.View`
   flex-direction: row;
   background: #f0f0f5;
 
-  margin: 15px 0;
+  margin-top: 15px;
   border-radius: 6px;
 `;
 
 export const CharacterImage = styled.Image`
   width: 40%;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
 `;
 export const Content = styled.View`
   flex: 1;
@@ -27,17 +29,20 @@ export const Name = styled.Text`
 export const Key = styled.Text`
   font-size: 16px;
   font-family: 'Poppins-Medium';
+  width: 80%;
 `;
 
 export const Value = styled.Text`
   font-family: 'Poppins-SemiBold';
   color: #555555;
-
-  border: 1px solid #f00;
 `;
 
 export const HeartIcon = styled(Icon)`
-  position: absolute;
-  right: 15px;
-  bottom: 10px;
+  align-self: flex-end;
+`;
+
+export const Footer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 `;

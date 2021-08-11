@@ -13,17 +13,19 @@ const Card: React.FC<CardProps> = ({character}) => (
     <S.CharacterImage source={{uri: character.image}} />
 
     <S.Content>
-      <S.Name>{character.name}</S.Name>
+      <S.Name numberOfLines={1}>{character.name}</S.Name>
       <S.Key>
         Species: {'\n'}
         <S.Value>{character.species}</S.Value>
       </S.Key>
-      <S.Key>
-        Origin: {'\n'}
-        <S.Value>{character.origin.name}</S.Value>
-      </S.Key>
+      <S.Footer>
+        <S.Key numberOfLines={1}>
+          Origin: {'\n'}
+          <S.Value>{character.origin.name}</S.Value>
+        </S.Key>
 
-      <S.HeartIcon name="heart-outline" size={20} color="#1e2047" />
+        <S.HeartIcon name="heart-outline" size={24} color="#1e2047" />
+      </S.Footer>
     </S.Content>
   </S.Container>
 );
