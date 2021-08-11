@@ -22,10 +22,12 @@ export interface CharacterProps {
 
 const Feed: React.FC = () => {
   const [feed, setFeed] = useState<CharacterProps[]>([]);
+  const [filteredFeed, setFilteredFeed] = useState<CharacterProps[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [totalCharacters, setTotalCharacters] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [searchText, setSearchText] = useState('');
 
   const loadFeed = useCallback(async () => {
     if (page === totalPages) {
@@ -41,6 +43,18 @@ const Feed: React.FC = () => {
     setLoading(false);
   }, [feed, page, totalPages]);
 
+  const filterFeed = useCallback(async () => {
+    setFilteredFeed([]);
+
+    if (searchText === '') {
+      return;
+    }
+
+    const response = await api.get(`character/?name=${searchText}`);
+
+    setFilteredFeed(response.data.results);
+  }, [searchText]);
+
   useEffect(() => {
     loadFeed();
   }, []);
@@ -52,8 +66,19 @@ const Feed: React.FC = () => {
         <S.CharactersCount>{totalCharacters} personagens</S.CharactersCount>
       </S.Header>
       <S.Content>
-        <Input />
-        {feed && <List feed={feed} loadFeed={loadFeed} loading={loading} />}
+        <Input
+          placeholder="Busque por um personagem"
+          value={searchText}
+          onChangeText={text => {
+            setSearchText(text);
+            filterFeed();
+          }}
+        />
+        <List
+          feed={filteredFeed ? filteredFeed : feed}
+          loadFeed={loadFeed}
+          loading={loading}
+        />
       </S.Content>
     </S.Container>
   );
