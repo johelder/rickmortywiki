@@ -12,7 +12,9 @@ export const Container = styled.View`
   flex-direction: row;
   align-items: center;
 `;
-export const Input = styled.TextInput``;
+export const Input = styled.TextInput`
+  flex: 1;
+`;
 
 export const SearchIcon = styled(Icon)`
   margin: 0 15px;

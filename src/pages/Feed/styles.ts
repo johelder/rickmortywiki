@@ -6,6 +6,7 @@ export const Container = styled.View`
 `;
 
 export const Content = styled.View`
+  flex: 1;
   margin: 0 15px;
 `;
 
@@ -28,4 +29,8 @@ export const CharactersCount = styled.Text`
   font-size: 14px;
   font-family: 'Poppins-Regular';
   color: #c1c1c1;
+`;
+
+export const LoadingFeed = styled.ActivityIndicator`
+  margin-top: 40px;
 `;

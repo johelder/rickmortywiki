@@ -14,6 +14,7 @@ const Routes: React.FC = () => (
     }}>
     <Navigation.Screen name="Welcome" component={Welcome} />
     <Navigation.Screen name="Feed" component={Feed} />
+    <Navigation.Screen name="Details" component={Feed} />
   </Navigation.Navigator>
 );
 
