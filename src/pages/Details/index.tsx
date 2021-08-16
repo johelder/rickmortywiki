@@ -1,11 +1,17 @@
-import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {Linking} from 'react-native';
+import {useNavigation, RouteProp} from '@react-navigation/native';
+
+import {Linking, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import * as S from './styles';
+import {CharacterProps} from '../Feed';
 
-const Details: React.FC = ({route}) => {
+interface Props {
+  route: RouteProp<{params: {character: CharacterProps}}, 'params'>;
+}
+
+const Details: React.FC<Props> = ({route}) => {
   const navigation = useNavigation();
   const {character} = route.params;
 
@@ -25,7 +31,9 @@ const Details: React.FC = ({route}) => {
       <S.DetailsContainer>
         <S.Header>
           <S.Name>{character.name}</S.Name>
-          <Icon name="heart-outline" size={26} color="#1e2047" />
+          <TouchableOpacity>
+            <Icon name="heart-outline" size={26} color="#1e2047" />
+          </TouchableOpacity>
         </S.Header>
 
         <S.Body>

@@ -1,12 +1,21 @@
 import React from 'react';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {CharacterProps} from '../pages/Feed';
 
 import Feed from '../pages/Feed';
 import Welcome from '../pages/Welcome';
 import Details from '../pages/Details';
 
-const Navigation = createNativeStackNavigator();
+export type RootStackParamList = {
+  Welcome: undefined;
+  Feed: undefined;
+  Details: {
+    character: CharacterProps;
+  };
+};
+
+const Navigation = createNativeStackNavigator<RootStackParamList>();
 
 const Routes: React.FC = () => (
   <Navigation.Navigator
