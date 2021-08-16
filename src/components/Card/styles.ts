@@ -25,13 +25,13 @@ export const Name = styled.Text`
   font-family: 'Poppins-SemiBold';
   color: #333333;
 `;
-export const Key = styled.Text`
+export const Description = styled.Text`
   font-size: 16px;
   font-family: 'Poppins-Medium';
   width: 80%;
 `;
 
-export const Value = styled.Text`
+export const DescriptionValue = styled.Text`
   font-family: 'Poppins-SemiBold';
   color: #555555;
 `;
