@@ -28,7 +28,7 @@ const Feed: React.FC = () => {
   const [page, setPage] = useState(2);
   const [loading, setLoading] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
-  const [totalCharacters, setTotalCharacters] = useState(null);
+  const [totalCharacters, setTotalCharacters] = useState<number>();
 
   const [searchText, setSearchText] = useState('');
   const [filteredFeed, setFilteredFeed] = useState<CharacterProps[] | any>();
@@ -51,6 +51,7 @@ const Feed: React.FC = () => {
         setLoading(false);
         setErr('');
       } catch (error) {
+        setTotalCharacters(0);
         setErr('Não foi possível carregar os personagens.');
       }
     };
@@ -93,6 +94,7 @@ const Feed: React.FC = () => {
       setErr('');
       setCanLoad(true);
     } catch (error) {
+      setTotalCharacters(0);
       setErr('Personagem não encontrado.');
     }
   }, [searchText]);
