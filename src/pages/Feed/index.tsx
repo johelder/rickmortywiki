@@ -4,10 +4,9 @@ import api from '../../services/api';
 
 import List from '../../components/List';
 import Input from '../../components/Input';
-// import Err from '../../components/Err';
+import Err from '../../components/Err';
 
 import * as S from './styles';
-import Err from '../../components/Err';
 
 export interface CharacterProps {
   id: string;

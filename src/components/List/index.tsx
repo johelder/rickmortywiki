@@ -20,9 +20,6 @@ const List: React.FC<ListProps> = ({feed, loadFeed}) => {
       onEndReachedThreshold={0.1}
       onEndReached={loadFeed}
       showsVerticalScrollIndicator={false}
-      ListFooterComponent={
-        loadFeed && <S.Loading size="small" color="#1e2047" />
-      }
     />
   );
 };

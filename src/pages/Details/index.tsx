@@ -15,7 +15,6 @@ interface Props {
     {
       params: {
         character: CharacterProps;
-        favorite: {isLiked: boolean; favoriteChar: () => void};
       };
     },
     'params'
