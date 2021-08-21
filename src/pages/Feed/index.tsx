@@ -36,6 +36,7 @@ const Feed: React.FC = () => {
   const [totalFilteredPage, setTotalFilteredPage] = useState(0);
 
   const [err, setErr] = useState('');
+  const [canLoad, setCanLoad] = useState(true);
 
   useEffect(() => {
     const getCharacters = async () => {
@@ -59,6 +60,7 @@ const Feed: React.FC = () => {
   const updateFeed = useCallback(async () => {
     try {
       if (page === totalPages) {
+        setCanLoad(false);
         return;
       }
 
@@ -68,6 +70,7 @@ const Feed: React.FC = () => {
       setFeed([...feed, ...data]);
       setPage(page + 1);
       setErr('');
+      setCanLoad(true);
     } catch (error) {
       setErr('Não foi possível carregar mais personagens');
     }
@@ -77,6 +80,7 @@ const Feed: React.FC = () => {
     try {
       if (searchText === '') {
         setPage(1);
+        setCanLoad(false);
       }
       setLoading(true);
       const response = await api.get(`character/?name=${searchText}`);
@@ -87,6 +91,7 @@ const Feed: React.FC = () => {
       setTotalFilteredPage(response.data.info.pages);
       setLoading(false);
       setErr('');
+      setCanLoad(true);
     } catch (error) {
       setErr('Personagem não encontrado.');
     }
@@ -95,6 +100,7 @@ const Feed: React.FC = () => {
   const updateFilteredFeed = useCallback(async () => {
     try {
       if (filteredPage > totalFilteredPage) {
+        setCanLoad(false);
         return;
       }
 
@@ -105,6 +111,7 @@ const Feed: React.FC = () => {
       setFilteredFeed([...filteredFeed, ...response.data.results]);
       setFilteredPage(filteredPage + 1);
       setErr('');
+      setCanLoad(true);
     } catch (error) {
       setErr('Não foi possível carregar mais personagens');
     }
@@ -131,9 +138,13 @@ const Feed: React.FC = () => {
         ) : loading ? (
           <S.LoadingFeed size="small" color="#1e2047" />
         ) : filteredFeed ? (
-          <List feed={filteredFeed} loadFeed={updateFilteredFeed} />
+          <List
+            feed={filteredFeed}
+            loadFeed={updateFilteredFeed}
+            canLoad={canLoad}
+          />
         ) : (
-          <List feed={feed} loadFeed={updateFeed} />
+          <List feed={feed} loadFeed={updateFeed} canLoad={canLoad} />
         )}
       </S.Content>
     </S.Container>
