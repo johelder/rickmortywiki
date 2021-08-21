@@ -1,13 +1,14 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {useNavigation} from '@react-navigation/core';
-
 import {TouchableOpacity, TouchableOpacityProps} from 'react-native';
 
+import FavoritesContext from '../../Contexts/FavoritesContext';
+
+import {RootStackParamList} from '../../routes';
 import {CharacterProps} from '../../pages/Feed';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import * as S from './styles';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../../routes';
 
 interface CardProps extends TouchableOpacityProps {
   character: CharacterProps;
@@ -19,8 +20,9 @@ type DetailsScreenProps = NativeStackNavigationProp<
 >;
 
 const Card: React.FC<CardProps> = ({character}) => {
-  const [isLiked, setIsLiked] = useState(false);
   const navigation = useNavigation<DetailsScreenProps>();
+  const [isLiked, setIsLiked] = useState(false);
+  const {favorites, handleFavorite} = useContext(FavoritesContext);
 
   return (
     <S.Container onPress={() => navigation.navigate('Details', {character})}>
@@ -38,9 +40,17 @@ const Card: React.FC<CardProps> = ({character}) => {
             <S.DescriptionValue>{character.origin.name}</S.DescriptionValue>
           </S.Description>
 
-          <TouchableOpacity onPress={() => setIsLiked(!isLiked)}>
+          <TouchableOpacity
+            onPress={() => {
+              setIsLiked(!isLiked);
+              handleFavorite(Number(character.id));
+            }}>
             <S.HeartIcon
-              name={isLiked ? 'heart' : 'heart-outline'}
+              name={
+                favorites.includes(Number(character.id)) === true
+                  ? 'heart'
+                  : 'heart-outline'
+              }
               size={24}
               color="#1e2047"
             />

@@ -1,19 +1,31 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {Linking, TouchableOpacity} from 'react-native';
 import {useNavigation, RouteProp} from '@react-navigation/native';
 
-import {Linking, TouchableOpacity} from 'react-native';
+import FavoritesContext from '../../Contexts/FavoritesContext';
+
+import {CharacterProps} from '../Feed';
+
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import * as S from './styles';
-import {CharacterProps} from '../Feed';
 
 interface Props {
-  route: RouteProp<{params: {character: CharacterProps}}, 'params'>;
+  route: RouteProp<
+    {
+      params: {
+        character: CharacterProps;
+        favorite: {isLiked: boolean; favoriteChar: () => void};
+      };
+    },
+    'params'
+  >;
 }
 
 const Details: React.FC<Props> = ({route}) => {
   const navigation = useNavigation();
   const {character} = route.params;
+  const {favorites, handleFavorite} = useContext(FavoritesContext);
 
   const handleSearchGoogle = () => {
     const searchName = character.name.replace(' ', '+');
@@ -31,8 +43,17 @@ const Details: React.FC<Props> = ({route}) => {
       <S.DetailsContainer>
         <S.Header>
           <S.Name>{character.name}</S.Name>
-          <TouchableOpacity>
-            <Icon name="heart-outline" size={26} color="#1e2047" />
+          <TouchableOpacity
+            onPress={() => handleFavorite(Number(character.id))}>
+            <Icon
+              name={
+                favorites.includes(Number(character.id)) === true
+                  ? 'heart'
+                  : 'heart-outline'
+              }
+              size={28}
+              color="#1e2047"
+            />
           </TouchableOpacity>
         </S.Header>
 
