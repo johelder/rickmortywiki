@@ -4,13 +4,13 @@ interface DescriptionValueProps {
   status?: string;
 }
 
-export const Container = styled.SafeAreaView`
+export const Container = styled.ScrollView`
   flex: 1;
 `;
 
 export const ImageContainer = styled.ImageBackground`
   width: 100%;
-  height: 50%;
+  height: 400px;
 `;
 
 export const BackButton = styled.TouchableOpacity`
@@ -26,7 +26,7 @@ export const BackButton = styled.TouchableOpacity`
 `;
 
 export const DetailsContainer = styled.View`
-  padding: 20px 20px;
+  padding: 30px 30px;
 `;
 
 export const Header = styled.View`
@@ -35,7 +35,7 @@ export const Header = styled.View`
   align-items: center;
   justify-content: space-between;
 
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 `;
 
 export const Body = styled(Header)`
@@ -43,7 +43,7 @@ export const Body = styled(Header)`
 `;
 
 export const Footer = styled(Body)`
-  margin-top: 15px;
+  margin-top: 30px;
 `;
 
 export const Name = styled.Text`
@@ -72,7 +72,9 @@ export const DescriptionValue = styled.Text<DescriptionValueProps>`
 
 export const SearchInGoogleButton = styled.TouchableOpacity`
   background: #1e2047;
-  flex: 1;
+
+  height: 56px;
+  width: 100%;
 
   align-items: center;
   justify-content: center;
