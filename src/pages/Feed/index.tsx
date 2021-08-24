@@ -121,7 +121,9 @@ const Feed: React.FC = () => {
     <S.Container>
       <S.Header>
         <S.Title>Listagem</S.Title>
-        <S.CharactersCount>{totalCharacters} personagens</S.CharactersCount>
+        {!loading && (
+          <S.CharactersCount>{totalCharacters} personagens</S.CharactersCount>
+        )}
       </S.Header>
       <S.Content>
         <Input
