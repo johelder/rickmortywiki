@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, View} from 'react-native';
+import {FlatList} from 'react-native';
 
 import {CharacterProps} from '../../pages/Feed/';
 
@@ -22,7 +22,11 @@ const List: React.FC<ListProps> = ({feed, loadFeed, canLoad}) => {
       onEndReached={loadFeed}
       showsVerticalScrollIndicator={false}
       ListFooterComponent={
-        canLoad ? <S.Loading size="small" color="#1e2047" /> : <View />
+        canLoad ? (
+          <S.Loading size="small" color="#1e2047" />
+        ) : (
+          <S.FooterComponent />
+        )
       }
     />
   );
