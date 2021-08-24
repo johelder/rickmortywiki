@@ -2,9 +2,7 @@ import React, {useEffect, useState, useCallback} from 'react';
 
 import api from '../../services/api';
 
-import List from '../../components/List';
-import Input from '../../components/Input';
-import Err from '../../components/Err';
+import {Err, Input, List} from '../../components';
 
 import * as S from './styles';
 

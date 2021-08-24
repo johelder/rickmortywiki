@@ -3,9 +3,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {CharacterProps} from '../pages/Feed';
 
-import Feed from '../pages/Feed';
-import Welcome from '../pages/Welcome';
-import Details from '../pages/Details';
+import {Details, Feed, Welcome} from '../pages';
 
 export type RootStackParamList = {
   Welcome: undefined;
