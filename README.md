@@ -25,7 +25,7 @@ git clone https://github.com/johelder/rickmortywiki.git
 
 #### install depedencies
 ```bash
-yarn add
+yarn
 ```
 
 #### run Metro
